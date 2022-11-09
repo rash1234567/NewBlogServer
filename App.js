@@ -5,10 +5,11 @@ const blogRoutes = require('./Routes/blogRoutes');
 require('dotenv').config();
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(blogRoutes)
-app.use(cors())
+
 
 
 mongoose.connect(process.env.DB_URL).then(()=> {
@@ -19,5 +20,5 @@ mongoose.connect(process.env.DB_URL).then(()=> {
 
 
 app.listen(process.env.PORT, process.env.HOST_NAME, () => {
-    console.log('listening')
+    console.log(process.env.PORT)
 })
